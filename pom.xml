@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.github.flytreeleft</groupId>
+    <groupId>org.github.pantovad</groupId>
     <artifactId>nexus3-keycloak-plugin</artifactId>
-    <version>0.7.0</version>
+    <version>0.8.4</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <packaging>bundle</packaging>
 
-    <url>https://github.com/flytreeleft/nexus3-keycloak-plugin</url>
+    <url>https://github.com/pantovad/nexus3-keycloak-plugin</url>
     <description>
         This plugin adds a Keycloak realm to Sonatype Nexus OSS and enables you
         to authenticate with Keycloak Realm Users and authorize with Keycloak realm/client roles or groups.
@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.sonatype.nexus.plugins</groupId>
         <artifactId>nexus-plugins</artifactId>
-        <version>3.50.0-01</version>
+        <version>3.60.0-02</version>
     </parent>
 
     <properties>
@@ -36,12 +36,12 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <keycloak.version>13.0.0</keycloak.version>
+        <keycloak.version>22.0.3</keycloak.version>
     </properties>
 
     <issueManagement>
         <system>Github Issues</system>
-        <url>https://github.com/flytreeleft/nexus3-keycloak-plugin/issues</url>
+        <url>https://github.com/pantovad/nexus3-keycloak-plugin/issues</url>
     </issueManagement>
 
     <organization>
@@ -50,9 +50,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git://github.com/flytreeleft/nexus3-keycloak-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:flytreeleft/nexus3-keycloak-plugin.git</developerConnection>
-        <url>https://github.com/flytreeleft/nexus3-keycloak-plugin</url>
+        <connection>scm:git:git://github.com/pantovad/nexus3-keycloak-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:pantovad/nexus3-keycloak-plugin.git</developerConnection>
+        <url>https://github.com/pantovad/nexus3-keycloak-plugin</url>
     </scm>
 
     <developers>
@@ -87,9 +87,18 @@
             <name>rverchere</name>
             <url>https://github.com/rverchere</url>
         </contributor>
+        <contributor>
+            <name>pantovad</name>
+            <url>https://github.com/pantovad</url>
+        </contributor>
     </contributors>
 
     <dependencies>
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+            <version>1.2.1</version>
+        </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
@@ -208,12 +217,12 @@
         <repository>
             <id>github</id>
             <name>GitHub Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/rverchere/nexus3-keycloak-plugin</url>
+            <url>https://maven.pkg.github.com/${env.GITHUB_USERNAME}/nexus3-keycloak-plugin</url>
         </repository>
         <snapshotRepository>
             <id>github</id>
             <name>GitHub Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/rverchere/nexus3-keycloak-plugin</url>
+            <url>https://maven.pkg.github.com/${env.GITHUB_USERNAME}/nexus3-keycloak-plugin</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
