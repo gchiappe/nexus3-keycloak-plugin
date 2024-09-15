@@ -11,6 +11,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.util.StringUtils;
 import org.github.flytreeleft.nexus3.keycloak.plugin.internal.mapper.KeycloakMapper;
+import org.github.flytreeleft.nexus3.keycloak.plugin.internal.token.UsernamePasswordOnetimePasswordToken;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.UserInfo;
 import org.keycloak.representations.idm.GroupRepresentation;
@@ -55,10 +56,11 @@ public class NexusKeycloakClient {
         return false;
     }
 
-    public boolean authenticate(UsernamePasswordToken token) {
+    public boolean authenticate(UsernamePasswordOnetimePasswordToken token) {
         String principal = token.getUsername();
         String credentials = new String(token.getPassword());
-        AccessTokenResponse accessTokenResponse = this.keycloakAdminClient.obtainAccessToken(principal, credentials);
+        String otp = token.getOneTimePassword();
+        AccessTokenResponse accessTokenResponse = this.keycloakAdminClient.obtainAccessToken(principal, credentials, otp);
 
         return accessTokenResponse != null && StringUtils.hasText(accessTokenResponse.getToken());
     }

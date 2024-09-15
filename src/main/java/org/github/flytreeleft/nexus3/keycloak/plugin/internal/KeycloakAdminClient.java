@@ -78,7 +78,7 @@ public class KeycloakAdminClient {
         }
     }
 
-    public AccessTokenResponse obtainAccessToken(String username, String password) {
+    public AccessTokenResponse obtainAccessToken(String username, String password, String token) {
         URI uri = KeycloakUriBuilder.fromUri(getConfig().getAuthServerUrl())
                                     .path(ServiceUrlConstants.TOKEN_PATH)
                                     .build(getRealm());
@@ -96,6 +96,10 @@ public class KeycloakAdminClient {
                                    .param(OAuth2Constants.GRANT_TYPE, OAuth2Constants.PASSWORD)
                                    .param("username", username)
                                    .param("password", password);
+            
+            if (token != null) {
+                httpMethod.param("otp", token);
+            }
 
             if (getConfig().isPublicClient()) {
                 httpMethod = httpMethod.param(OAuth2Constants.CLIENT_ID, getConfig().getResource());
