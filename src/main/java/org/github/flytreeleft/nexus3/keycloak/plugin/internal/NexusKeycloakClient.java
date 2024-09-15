@@ -56,10 +56,11 @@ public class NexusKeycloakClient {
         return false;
     }
 
-    public boolean authenticate(UsernamePasswordOnetimePasswordToken token) {
-        String principal = token.getUsername();
-        String credentials = new String(token.getPassword());
-        String otp = token.getOneTimePassword();
+    public boolean authenticate(UsernamePasswordToken token) {
+        UsernamePasswordOnetimePasswordToken tokenOtp = new UsernamePasswordOnetimePasswordToken(token);
+        String principal = tokenOtp.getUsername();
+        String credentials = new String(tokenOtp.getPassword());
+        String otp = tokenOtp.getOneTimePassword();
         AccessTokenResponse accessTokenResponse = this.keycloakAdminClient.obtainAccessToken(principal, credentials, otp);
 
         return accessTokenResponse != null && StringUtils.hasText(accessTokenResponse.getToken());
