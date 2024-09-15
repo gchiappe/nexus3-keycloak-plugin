@@ -1,10 +1,22 @@
-Nexus3 Keycloak Plugin
-===============================
+# Nexus3 Keycloak Plugin with 2FA
 
 This plugin adds a Keycloak realm to Sonatype Nexus OSS and enables you to
 authenticate with Keycloak Realm Users and authorize with Keycloak realm/client roles or groups.
 
 It works with Nexus 3.x and Keycloak 3.x ~ 14.x.
+
+A 2 Factor Authentication token (OTP) can be provided through the password field by appending
+the token surrounded by curly brackets (`{123456}`) to the password.
+
+**Example:**
+
+| Field              | Example                | 
+|--------------------|------------------------|
+| Password           | `1mysecretpw2`         | 
+| Token              | `112341`               |  
+| Resulting password | `1mysecretpw2{112341}` | 
+
+If no curly brackets with 6 digits are provided, no TOTP form parameter is sent (default non-2FA behavior).
 
 ## Features
 
